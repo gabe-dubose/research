@@ -1,0 +1,4 @@
+Saved Phylogeny[Rooted] to: /home/jdubos2/NCDMIC/data/process_data/phylogeny/insertion-tree.qza
+Saved Placements to: /home/jdubos2/NCDMIC/data/process_data/phylogeny/insertion-placements.qza
+Saved FeatureTable[Frequency] to: /home/jdubos2/NCDMIC/data/process_data/quality_control/NCDMIC_table_mito_chloro_D0_q80_wolbachia_sepp_filtered.qza
+Saved FeatureTable[Frequency] to: /home/jdubos2/NCDMIC/data/process_data/quality_control/NCDMIC_table_mito_chloro_D0_q80_wolbachia_sepp_removed.qza

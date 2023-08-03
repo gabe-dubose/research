@@ -1,0 +1,3 @@
+Saved FeatureTable[Frequency] to: /home/jdubos2/NCDMIC/data/process_data/quality_control/NCDMIC_sequences_table.qza
+Saved FeatureData[Sequence] to: /home/jdubos2/NCDMIC/data/process_data/quality_control/NCDMIC_rep_seqs.qza
+Saved SampleData[DADA2Stats] to: /home/jdubos2/NCDMIC/data/process_data/quality_control/NCDMIC_denoising_stats.qza

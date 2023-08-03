@@ -1,0 +1,6 @@
+QIIME is caching your current deployment for improved performance. This may take a few moments and should only happen once per deployment.
+Saved PCoAResults % Properties('biplot') to: /home/jdubos2/NCDMIC/data/process_data/diversity/aithcison_ordination_results.qza
+Saved DistanceMatrix to: /home/jdubos2/NCDMIC/data/process_data/diversity/aithcison_distance_matrix.qza
+Saved Visualization to: /home/jdubos2/NCDMIC/data/process_data/diversity/aitchison_biplot.qzv
+Saved Visualization to: /home/jdubos2/NCDMIC/data/process_data/diversity/aitchison_species_permanova.qzv
+Saved Visualization to: /home/jdubos2/NCDMIC/data/process_data/diversity/aitchison_species_permdisp.qzv

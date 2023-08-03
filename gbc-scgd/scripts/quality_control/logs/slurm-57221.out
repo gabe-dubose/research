@@ -1,0 +1,3 @@
+Imported /home/jdubos2/NCDMIC/data/process_data/NCDMIC_manifest.tsv as PairedEndFastqManifestPhred33V2 to /home/jdubos2/NCDMIC/data/process_data/NCDMIC_raw_sequences.qza
+/apps/conda/jdubos2/envs/qiime2-2022.11/lib/python3.8/site-packages/q2_types/per_sample_sequences/_format.py:56: FutureWarning: iteritems is deprecated and will be removed in a future version. Use .items instead.
+  for i, (id_, fp) in enumerate(column.iteritems(), start=1):

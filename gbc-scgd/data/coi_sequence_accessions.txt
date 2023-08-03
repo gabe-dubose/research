@@ -1,0 +1,5 @@
+DQ383730.1 Drosophila mojavensis isolate sanqFd cytochrome oxidase subunit I (COI) gene, partial cds; mitochondrial
+MF443102.1 Drosophila arizonae voucher 1271_14 cytochrome oxidase subunit I (COI) gene, partial cds; mitochondrial
+JF872373.1 Drosophila nigrospiracula voucher BIOUG<CAN_:10BBDIP-0982 cytochrome oxidase subunit 1 (COI) gene, partial cds; mitochondrial
+AY533809.1 Drosophila mettleri isolate GY2m_1 cytochrome oxidase subunit I (COI) gene, partial cds; mitochondrial
+MT807020.1 Drosophila melanogaster voucher Duke.Bio203L.S20.TC4C cytochrome oxidase subunit 1 (COI) gene, partial cds; mitochondrial
