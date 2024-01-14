@@ -55,7 +55,7 @@ tab10_red = tuple(list(sns.color_palette("tab10")[3]) + [1])
 tab10_purple = tuple(list(sns.color_palette("tab10")[4]) + [1])
 seaborn_gray = '#3d3d3d'
 
-sns.set_style('darkgrid')
+sns.set_style('whitegrid')
 sns.set_palette("tab10")
 fig, [ax1, ax2, ax3] = plt.subplots(1, 3, figsize=(30, 8))
 

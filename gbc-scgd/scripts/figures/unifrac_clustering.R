@@ -35,6 +35,9 @@ weighted.unifrac.dendrogram <- as.phylo(weighted.unifrac.clusters)
 unweighted.unifrac.dendrogram <- as.phylo(unweighted.unifrac.clusters)
 #load associations between the tips of both trees
 associations <- cbind(metadata$species, metadata$sample.id)
+associations[, 1] <- gsub("^\\w+", "D._", associations[, 1])
+associations[, 1] <- gsub("\\s", "", associations[, 1])
+
 #make color palette
 colors <- c()
 for (species in associations[,1]) {
@@ -61,7 +64,7 @@ unweighted.unifrac.cophylo.obj <- cophylo(host.tree, unweighted.unifrac.dendrogr
 
 #plot weighted unifrac cophylo
 pdf(file="../../figures/host_tree_vs_weighted_unifrac.pdf", width=5, height=5)
-par(bg = '#ebebf2')
+par()
 plot(weighted.unifrac.cophylo.obj, link.type="curved",link.lwd=3, ylim=c(-2.5,1.5), fsize=c(1, 0.001),
      link.col=make.transparent(colors, 1), link.lty="solid")
 mtext(substitute(paste(italic("Drosophila"), " phylogeny")), line=-11, adj=0.05, cex=0.75)
@@ -70,7 +73,7 @@ dev.off()
 
 #plot unweighted unifrac cophylo
 pdf(file="../../figures/host_tree_vs_unweighted_unifrac.pdf", width=5, height=5)
-par(bg = '#ebebf2')
+par()
 plot(unweighted.unifrac.cophylo.obj, link.type="curved",link.lwd=3, ylim=c(-2.5,1.5), fsize=c(1, 0.001),
      link.col=make.transparent(colors, 1), link.lty="solid")
 mtext(substitute(paste(italic("Drosophila"), " phylogeny")), line=-11, adj=0.05, cex=0.75)

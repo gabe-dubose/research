@@ -9,7 +9,7 @@ import pandas as pd
 alpha_data = pd.read_table('../../data/alpha_diversity.tsv', delimiter='\t', header='infer')
 
 #make plot
-sns.set_style('darkgrid')
+sns.set_style('whitegrid')
 sns.set_palette("tab10")
 
 fig, [ax1, ax2, ax3, ax4] = plt.subplots(1, 4, figsize=(18, 8))
@@ -24,7 +24,7 @@ ax2.set_xticklabels(labels, fontsize=22, style = "italic", rotation=30, rotation
 ax3.set_xticklabels(labels, fontsize=22, style = "italic", rotation=30, rotation_mode='anchor', ha='right')
 ax4.set_xticklabels(labels, fontsize=22, style = "italic", rotation=30, rotation_mode='anchor', ha='right')
 
-ax1.set_ylabel("Observed Features", fontsize=22)
+ax1.set_ylabel("ASV Richness", fontsize=22)
 ax1.tick_params(axis='y', labelsize=22)
 
 ax2.set_ylabel("Shannon Entropy", fontsize=22)

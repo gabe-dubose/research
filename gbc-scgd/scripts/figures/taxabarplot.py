@@ -17,7 +17,7 @@ seaborn_gray = '#3d3d3d'
 #load taxabarplot qzv
 taxabarplot_file = '../../data/NCDMIC_taxa_barplot.qzv'
 
-sns.set_style("darkgrid")
+sns.set_style("whitegrid")
 fig, [ax1, ax2, ax3, ax4, ax5, ax6] = plt.subplots(1, 6, figsize=(25, 10), gridspec_kw={'width_ratios': [7,5,6,10,5,10]})
 
 #nigrospiracula
