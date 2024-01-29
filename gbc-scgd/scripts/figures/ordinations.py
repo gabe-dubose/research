@@ -2,6 +2,7 @@
 
 import seaborn as sns
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 import matplotlib
 import numpy as np
 import pandas as pd
@@ -9,10 +10,9 @@ from matplotlib.patches import Ellipse
 import matplotlib.transforms as transforms
 from matplotlib import colors
 import matplotlib.font_manager as fm
-import dokdo
 
 #function to compute confidence ellipse
-def confidence_ellipse(x, y, ax, n_std=3.0, facecolor='none', **kwargs):
+def confidence_ellipse(x, y, ax, n_std=3.0, facecolor='none', linewidth=1, edgecolor='none', alpha=1, **kwargs):
 
     if x.size != y.size:
         raise ValueError("x and y must be the same size")
@@ -27,6 +27,9 @@ def confidence_ellipse(x, y, ax, n_std=3.0, facecolor='none', **kwargs):
         width=ell_radius_x * 2,
         height=ell_radius_y * 2,
         facecolor=facecolor,
+        edgecolor=edgecolor,
+        linewidth=linewidth,
+        alpha=alpha,
         **kwargs)
 
     # Calculating the stdandard deviation of x from
@@ -56,8 +59,18 @@ tab10_purple = tuple(list(sns.color_palette("tab10")[4]) + [1])
 seaborn_gray = '#3d3d3d'
 
 sns.set_style('whitegrid')
-sns.set_palette("tab10")
-fig, [ax1, ax2, ax3] = plt.subplots(1, 3, figsize=(30, 8))
+cmap = plt.cm.get_cmap('viridis')
+
+# Divide the colormap into 14 bins
+num_bins = 5
+colors = [cmap(i / num_bins) for i in range(num_bins)]
+# Extract hex codes
+colors = [mcolors.to_hex(color) for color in colors]
+#make palette
+custom_palette = sns.color_palette(colors)
+sns.set_palette(custom_palette)
+
+fig, [ax1, ax2] = plt.subplots(1, 2, figsize=(15, 5))
 
 #Unweighted UniFrac
 #Load data
@@ -83,85 +96,58 @@ uny = undata['PC2']
 wx = undata['PC1']
 wy = undata['PC2']
 
-# scatter points on the main axes
-sns.scatterplot(data=undata, x='PC1', y='PC2', hue='species', s=250, ax=ax1, edgecolor=seaborn_gray, legend=False)
-sns.scatterplot(data=wdata, x='PC1', y='PC2', hue='species', s=250, ax=ax2, edgecolor=seaborn_gray, legend=False)
-
-ax1.set_xlabel("PC1: 18.83%", fontsize=22)
+ax1.set_xlabel("PCo1: 18.83%", fontsize=22)
 ax1.tick_params(axis='x', labelsize=22)
-ax1.set_ylabel("PC2: 8.98%", fontsize=22)
+ax1.set_ylabel("PCo2: 8.98%", fontsize=22)
 ax1.tick_params(axis='y', labelsize=22)
-ax2.set_xlabel("PC1: 38.19%", fontsize=22)
+ax2.set_xlabel("PCo1: 38.19%", fontsize=22)
 ax2.tick_params(axis='x', labelsize=22)
-ax2.set_ylabel("PC2: 16.18%", fontsize=22)
+ax2.set_ylabel("PCo2: 16.18%", fontsize=22)
 ax2.tick_params(axis='y', labelsize=22)
 
 font = fm.FontProperties(style='italic', size=22)
 
 ax1.set_title('Unweighted UniFrac', fontdict={'fontsize': 22})
-ax1.text(-0.99, 0.425, "A", fontdict={'fontsize':30})
+ax1.text(-1.1, 0.5, "A", fontdict={'fontsize':30})
 ax1.set_xlim(-0.75, 0.6)
 ax1.set_ylim(-0.5, 0.5)
 
 ax2.set_title('Weighted UniFrac', fontdict={'fontsize': 22})
-ax2.text(-1.45, 0.74, "B", fontdict={'fontsize':30})
+ax2.text(-1.65, 0.85, "B", fontdict={'fontsize':30})
 ax2.set_xlim(-1, 1.5)
 ax2.set_ylim(-0.9, 0.85)
 
 #D. nigrospiraclula confidence ellipse
-confidence_ellipse(x=unDni_data['PC1'], y=unDni_data['PC2'], edgecolor=tab10_blue, ax=ax1, n_std=2.0)
-confidence_ellipse(x=wDni_data['PC1'], y=wDni_data['PC2'], edgecolor=tab10_blue, ax=ax2, n_std=2.0)
+confidence_ellipse(x=unDni_data['PC1'], y=unDni_data['PC2'], edgecolor=colors[0], ax=ax1, n_std=2.0, linewidth=2)
+confidence_ellipse(x=wDni_data['PC1'], y=wDni_data['PC2'], edgecolor=colors[0], ax=ax2, n_std=2.0, linewidth=2)
 
 #D. mojavensis confidence ellipse
-confidence_ellipse(x=unDmo_data['PC1'], y=unDmo_data['PC2'], edgecolor=tab10_orange, ax=ax1, n_std=2.0)
-confidence_ellipse(x=wDmo_data['PC1'], y=wDmo_data['PC2'], edgecolor=tab10_orange, ax=ax2, n_std=2.0)
+confidence_ellipse(x=unDmo_data['PC1'], y=unDmo_data['PC2'], edgecolor=colors[1], ax=ax1, n_std=2.0, linewidth=2)
+confidence_ellipse(x=wDmo_data['PC1'], y=wDmo_data['PC2'], edgecolor=colors[1], ax=ax2, n_std=2.0, linewidth=2)
 
 #D. mettleri confidence ellipse
-confidence_ellipse(x=unDmet_data['PC1'], y=unDmet_data['PC2'], edgecolor=tab10_green, ax=ax1, n_std=2.0)
-confidence_ellipse(x=wDmet_data['PC1'], y=wDmet_data['PC2'], edgecolor=tab10_green, ax=ax2, n_std=2.0)
+confidence_ellipse(x=unDmet_data['PC1'], y=unDmet_data['PC2'], edgecolor=colors[2], ax=ax1, n_std=2.0, linewidth=2)
+confidence_ellipse(x=wDmet_data['PC1'], y=wDmet_data['PC2'], edgecolor=colors[2], ax=ax2, n_std=2.0, linewidth=2)
 
 #D. arizonae confidence ellipse
-confidence_ellipse(x=unDaz_data['PC1'], y=unDaz_data['PC2'], edgecolor=tab10_red, ax=ax1, n_std=2.0)
-confidence_ellipse(x=wDaz_data['PC1'], y=wDaz_data['PC2'], edgecolor=tab10_red, ax=ax2, n_std=2.0)
+confidence_ellipse(x=unDaz_data['PC1'], y=unDaz_data['PC2'], edgecolor=colors[3], ax=ax1, n_std=2.0, linewidth=2)
+confidence_ellipse(x=wDaz_data['PC1'], y=wDaz_data['PC2'], edgecolor=colors[3], ax=ax2, n_std=2.0, linewidth=2)
 
 #D. melanogaster confidence ellipse
-confidence_ellipse(x=unDmel_data['PC1'], y=unDmel_data['PC2'], edgecolor=tab10_purple, ax=ax1, n_std=2.0)
-confidence_ellipse(x=wDmel_data['PC1'], y=wDmel_data['PC2'], edgecolor=tab10_purple, ax=ax2, n_std=2.0)
+confidence_ellipse(x=unDmel_data['PC1'], y=unDmel_data['PC2'], edgecolor=colors[4], ax=ax1, n_std=2.0, linewidth=2)
+confidence_ellipse(x=wDmel_data['PC1'], y=wDmel_data['PC2'], edgecolor=colors[4], ax=ax2, n_std=2.0, linewidth=2)
 
-#add aitchison
-taxonomy_file = '../../data/NCDMIC_taxonomy.qza'
-pcoa_results = '../../data/aithcison_ordination_results.qza'
-metadata_file = '../../data/NCDMIC_metadata.tsv'
+# scatter points on the main axes
+sns.scatterplot(data=undata, x='PC1', y='PC2', hue='species', style='species', s=200, ax=ax1, edgecolor=seaborn_gray, legend=False, markers=['D', 's', 'h', 'p', 'o'])
+sns.scatterplot(data=wdata, x='PC1', y='PC2', hue='species', style='species', s=200, ax=ax2, edgecolor=seaborn_gray, legend=True, markers=['D', 's', 'h', 'p', 'o'])
 
-ax = dokdo.beta_2d_plot(pcoa_results,
-                        hue='species',
-                        metadata=metadata_file,
-                        edgecolor=seaborn_gray,
-                        s = 250,
-                        figsize=(12, 8),
-                        ax=ax3)
-
-dokdo.addbiplot(pcoa_results,
-                ax=ax3,
-                count=5,
-                dim=2,
-                taxonomy=taxonomy_file,
-                name_type='taxon',
-                fontsize=22,
-                level=6)
-
-ax3.set_xlabel("PC1: 50.61%", fontsize=22)
-ax3.tick_params(axis='x', labelsize=22)
-ax3.set_ylabel("PC2: 39.25%", fontsize=22)
-ax3.tick_params(axis='y', labelsize=22)
-
+handles, previous_labels = ax2.get_legend_handles_labels()
 font = fm.FontProperties(style='italic', size=22)
-ax3.legend(prop=font, markerscale=2, ncol=1, loc='lower left', bbox_to_anchor=(1, -0.025))
+ax2.legend(prop=font, handles=handles, 
+           labels=['D. nigrospiracula', 'D. mojavensis', 'D. mettleri', 'D. arizonae', 'D. melanogaster'],
+          bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0, fontsize=22, 
+           title_fontsize = 22, labelspacing = 0.1, markerscale=2)
 
-font = fm.FontProperties(size=22)
-ax3.set_title('Aitchison Distances', fontdict={'fontsize': 22})
-ax3.text(-0.53, 0.275, "C", fontdict={'fontsize':30})
-
+           
 plt.tight_layout()
 plt.savefig("../../figures/ordinations.pdf")
-

@@ -15,11 +15,11 @@ metadata[metadata == "D. mojavensis"] <- "D._mojavensis"
 metadata[metadata == "D. nigrospiracula"] <- "D._nigrospiracula"
 
 #define colors for each tip
-colors <- c("D._nigrospiracula" = "#1f77b4", 
-            "D._mojavensis" = "#ff7f0e", 
-            "D._mettleri" = "#2ca02c", 
-            "D._arizonae" = "#d62728", 
-            "D._melanogaster" = "#9467bd")
+colors <- c("D._nigrospiracula" = "#440154", 
+            "D._mojavensis" = "#414487", 
+            "D._mettleri" = "#2a788e", 
+            "D._arizonae" = "#22a884", 
+            "D._melanogaster" = "#7ad151")
 
 #convert distance matrix to distance object
 weighted.unifrac.distances <- as.dist(weighted.unifrac.distance.matrix)
@@ -42,19 +42,19 @@ associations[, 1] <- gsub("\\s", "", associations[, 1])
 colors <- c()
 for (species in associations[,1]) {
   if (species == "D._arizonae") {
-    colors <- c(colors, "#d62728")
+    colors <- c(colors, "#22a884")
   }
   if (species == "D._melanogaster") {
-    colors <- c(colors, "#9467bd")
+    colors <- c(colors, "#7ad151")
   }
   if (species == "D._mettleri") {
-    colors <- c(colors, "#2ca02c")
+    colors <- c(colors, "#2a788e")
   }
   if (species == "D._mojavensis") {
-    colors <- c(colors, "#ff7f0e")
+    colors <- c(colors, "#414487")
   }
   if (species == "D._nigrospiracula") {
-    colors <- c(colors, "#1f77b4")
+    colors <- c(colors, "#440154")
   }
 }
 
